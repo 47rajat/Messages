@@ -54,7 +54,7 @@ public class ContactDetailsActivity extends AppCompatActivity implements LoaderM
             mContactName.setText(getIntent().getStringExtra(INTENT_CONTANT_NAME_KEY));
         }
 
-        
+
         mContactNumbers = (RecyclerView) findViewById(R.id.contact_number);
         mContactNumbers.setLayoutManager(new LinearLayoutManager(this));
 

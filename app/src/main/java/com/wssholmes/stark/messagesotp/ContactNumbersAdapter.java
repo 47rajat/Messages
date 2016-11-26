@@ -1,6 +1,7 @@
 package com.wssholmes.stark.messagesotp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -58,6 +59,19 @@ public class ContactNumbersAdapter extends
         public ContactNumberAdapterViewHolder(View itemView) {
             super(itemView);
             mContactNumber = (TextView) itemView.findViewById(R.id.contact_number);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, SendMessageActivity.class);
+                    mCursor.moveToPosition(getAdapterPosition());
+                    if(mCursor != null){
+                        intent.putExtra(SendMessageActivity.INTENT_MOBILE_NUMBER_KEY,
+                                mCursor.getString(ContactDetailsActivity.COLUMN_NUMBER));
+                        mContext.startActivity(intent);
+                    }
+                }
+            });
         }
     }
 }

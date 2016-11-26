@@ -84,7 +84,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
                     getLoaderManager().initLoader(CONTACTS_LOADER_ID, null, this);
                 } else {
                     Snackbar.make(getActivity().findViewById(R.id.contacts_tab_layout),
-                            getString(R.string.permission_denied_message),
+                            getString(R.string.contact_permission_denied_message),
                             Snackbar.LENGTH_INDEFINITE).show();
                 }
                 break;

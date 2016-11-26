@@ -1,16 +1,9 @@
 package com.wssholmes.stark.messagesotp;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -19,8 +12,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private HomeScreenViewPagerAdapter mPagerAdapter;
-
-    private final int CONTACTS_PERMISSION_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

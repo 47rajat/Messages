@@ -2,5 +2,11 @@
     <string name="app_name">Messages OTP</string>
     <string name="contacts_tab_title">Contacts</string>
     <string name="messages_tab_title">Messages</string>
-    <string name="permission_denied_message">Need permission to display contacts</string>
+    <string name="contact_permission_denied_message">Need permission to display contacts</string>
+    <string name="send_button_text">SEND</string>
+    <string name="otp_message">Hi. Your OTP is:<xliff id="otp">%1s</xliff></string>
+    <string name="phone_number_error">Unable to get phone number</string>
+    <string name="message_sent_success">SMS Sent!</string>
+    <string name="message_sent_failure">SMS faild, please try again later!</string>
+    <string name="sms_permission_denied_message">Need permission to send message</string>
 </resources>
