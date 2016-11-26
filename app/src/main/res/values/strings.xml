@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Messages OTP</string>
+    <string name="contacts_tab_title">Contacts</string>
+    <string name="messages_tab_title">Messages</string>
 </resources>
