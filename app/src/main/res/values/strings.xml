@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Messages OTP</string>
+    <string name="app_name" translatable="false">Messages OTP</string>
     <string name="contacts_tab_title">Contacts</string>
     <string name="messages_tab_title">Messages</string>
     <string name="contact_permission_denied_message">Need permission to display contacts</string>
@@ -9,4 +9,6 @@
     <string name="message_sent_success">SMS Sent!</string>
     <string name="message_sent_failure">SMS faild, please try again later!</string>
     <string name="sms_permission_denied_message">Need permission to send message</string>
+    <string name="content_authority" translatable="false">com.wssholmes.stark.messagesotp</string>
+    <string name="empty_message_list_text">No sent message</string>
 </resources>

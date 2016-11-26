@@ -1,6 +1,7 @@
 package com.wssholmes.stark.messagesotp;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -16,10 +17,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wssholmes.stark.messagesotp.data.DataContract;
+
 public class SendMessageActivity extends AppCompatActivity {
     private static final String LOG_TAG = SendMessageActivity.class.getSimpleName();
 
     public static final String INTENT_MOBILE_NUMBER_KEY = "Mobile Number";
+    public static final String INTENT_CONTACT_NAME_KEY = "Contact Name ";
     private static final int SMS_PERMISSION_ID = 0;
 
     private TextView mSendMessage;
@@ -32,6 +36,7 @@ public class SendMessageActivity extends AppCompatActivity {
     private String mPhoneNumber;
     private String mOTPMessage;
     private Context mContext;
+    private String mContactName;
 
 
     @Override
@@ -42,6 +47,9 @@ public class SendMessageActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra(INTENT_MOBILE_NUMBER_KEY)){
             mPhoneNumber = getIntent().getStringExtra(INTENT_MOBILE_NUMBER_KEY);
+        }
+        if(getIntent().hasExtra(INTENT_MOBILE_NUMBER_KEY)){
+            mContactName = getIntent().getStringExtra(INTENT_CONTACT_NAME_KEY);
         }
         final int OTP = (int)(Math.random()*(OTP_UPPER_LIMIT - OTP_LOWER_LIMIT) + OTP_LOWER_LIMIT);
         mOTPMessage = getString(R.string.otp_message, Integer.toString(OTP));
@@ -92,6 +100,8 @@ public class SendMessageActivity extends AppCompatActivity {
                         mSmsManager.sendTextMessage(mPhoneNumber, null, mOTPMessage, null, null);
                         Toast.makeText(getApplicationContext(), R.string.message_sent_success,
                                 Toast.LENGTH_LONG).show();
+
+                        updateMessageList(mContactName, mOTPMessage);
                     } catch (Exception e) {
                         Toast.makeText(getApplicationContext(),
                                 R.string.message_sent_failure,
@@ -103,5 +113,18 @@ public class SendMessageActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    private void updateMessageList(String name, String mesaage){
+        ContentValues contentValues = new ContentValues();
+        long time = System.currentTimeMillis();
+
+        contentValues.put(DataContract.SentMessageEntry.COLUMN_CONTACT_NAME, mContactName);
+        contentValues.put(DataContract.SentMessageEntry.COLUMN_MESSAGE_SENT, mesaage);
+        contentValues.put(DataContract.SentMessageEntry.COLUMN_TIME_SENT, time);
+
+        getContentResolver().insert(DataContract.SentMessageEntry.CONTENT_URI, contentValues);
+
     }
 }

@@ -19,9 +19,11 @@ public class ContactNumbersAdapter extends
 
     private Cursor mCursor;
     private final Context mContext;
+    private final String mContactName;
 
-    public ContactNumbersAdapter(Context context){
+    public ContactNumbersAdapter(Context context, String name){
         mContext = context;
+        mContactName = name;
     }
 
     @Override
@@ -68,6 +70,8 @@ public class ContactNumbersAdapter extends
                     if(mCursor != null){
                         intent.putExtra(SendMessageActivity.INTENT_MOBILE_NUMBER_KEY,
                                 mCursor.getString(ContactDetailsActivity.COLUMN_NUMBER));
+                        intent.putExtra(SendMessageActivity.INTENT_CONTACT_NAME_KEY,
+                                mContactName);
                         mContext.startActivity(intent);
                     }
                 }

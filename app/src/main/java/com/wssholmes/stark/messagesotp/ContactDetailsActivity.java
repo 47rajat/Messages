@@ -40,6 +40,7 @@ public class ContactDetailsActivity extends AppCompatActivity implements LoaderM
     private TextView mContactName;
     private RecyclerView mContactNumbers;
     private ContactNumbersAdapter mNumbersAdapter;
+    private String contactName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class ContactDetailsActivity extends AppCompatActivity implements LoaderM
 
         mContactName = (TextView) findViewById(R.id.contact_name);
         if(getIntent().hasExtra(INTENT_CONTANT_NAME_KEY)){
+            contactName = getIntent().getStringExtra(INTENT_CONTANT_NAME_KEY);
             mContactName.setText(getIntent().getStringExtra(INTENT_CONTANT_NAME_KEY));
         }
 
@@ -58,7 +60,7 @@ public class ContactDetailsActivity extends AppCompatActivity implements LoaderM
         mContactNumbers = (RecyclerView) findViewById(R.id.contact_number);
         mContactNumbers.setLayoutManager(new LinearLayoutManager(this));
 
-        mNumbersAdapter = new ContactNumbersAdapter(this);
+        mNumbersAdapter = new ContactNumbersAdapter(this, contactName);
         mContactNumbers.setAdapter(mNumbersAdapter);
 
         getLoaderManager().initLoader(CONTACT_DETAILS_LOADER_ID, null, this);
@@ -72,7 +74,7 @@ public class ContactDetailsActivity extends AppCompatActivity implements LoaderM
                 PROJECTION,
                 SELECTION,
                 new String[]{mLookupKey},
-                null);
+                SORT_ORDER_PHONE);
     }
 
     @Override

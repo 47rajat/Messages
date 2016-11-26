@@ -33,12 +33,10 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
     private static final String[] PROJECTIONS = new String[]{
             ContactsContract.Contacts.LOOKUP_KEY,
             ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
-            ContactsContract.Contacts.PHOTO_THUMBNAIL_URI
     };
 
     public static final int COLUMN_LOOKUP_KEY = 0;
     public static final int COLUMN_NAME = 1;
-    public static final int COLUMN_THUMBNAIL = 2;
 
     private static final String SELECTION = ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1";
 
