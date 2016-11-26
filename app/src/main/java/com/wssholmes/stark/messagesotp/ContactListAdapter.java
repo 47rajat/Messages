@@ -40,17 +40,6 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         mCursor.moveToPosition(position);
         if(mCursor != null){
             holder.mContactName.setText(mCursor.getString(ContactsFragment.COLUMN_NAME));
-//            holder.mContactEmail.setText(mCursor.getString(MainActivity.CONTACT_EMAIL));
-//            holder.mContactLastContact.setText(mContext.getString(R.string.contact_last_contact,
-//                    getDate(mCursor.getLong(MainActivity.CONTACT_LAST_CONTACTED))));
-//            if(mCursor.getString(MainActivity.CONTACT_PHOTO) != null) {
-//                Picasso.with(mContext)
-//                        .load(Uri.parse(mCursor.getString(MainActivity.CONTACT_PHOTO)))
-//                        .into(holder.mContactImage);
-//            } else{
-//                holder.mContactImage.setImageDrawable(mContext.getResources().
-//                        getDrawable(R.drawable.ic_account_box_black_24dp));
-//            }
         }
 
     }
@@ -84,6 +73,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
                         mCursor.moveToPosition(getAdapterPosition());
                         intent.putExtra(ContactDetailsActivity.INTENT_CONTACT_LOOKUP_KEY,
                                 mCursor.getString(ContactsFragment.COLUMN_LOOKUP_KEY));
+                        intent.putExtra(ContactDetailsActivity.INTENT_CONTANT_NAME_KEY,
+                                mCursor.getString(ContactsFragment.COLUMN_NAME));
 
                         mContext.startActivity(intent);
                     }
